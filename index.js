@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/sendemail', (req, res, next) => {
-    const { to, subject, html } = req.body
+    const { subject, html } = req.body
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -20,7 +20,7 @@ app.post('/sendemail', (req, res, next) => {
 
     const mailOptions = {
         from: process.env.SENDER_EMAIL,
-        to,
+        to: process.env.SENDER_EMAIL,
         subject,
         html
     };
